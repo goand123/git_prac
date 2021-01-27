@@ -24,3 +24,15 @@
 	git reset --hard <되돌릴 commit> : commit 내역을 되돌리고 파일을 rollback
 	git revert <되돌릴 commit> : 파일을 rollback, revert 내역을 추가
 	git revert <되돌릴 commit> : 파일을 rollback하고 revert 내역을 남긴다.
+6. 파일을 원격 repository(github)로 올리기
+	git remote add origin <github repository 주소>
+	git pull --allow-unrelated-histories origin main : pull 처음할때
+			원격저장소의 ignore 파일과 readme  파일을 당겨온다.
+			--allow-unrelated-histories : 공통 조상을 공유하지 않는 기록 병합을 허용
+	git push origin main
+	git push -u origin main : 기본 push 브랜치가 origin main으로 잡힘
+			-u : push 할 기본 원격 저장소와 브랜치를 기억, 앞으로는 원격 저장소와 브랜치를 작성하지 않아도 된다.
+	i -> 입력모드 -> [E] 원격리포지토리에서 pull 해보기
+	:wq
+	
+	
