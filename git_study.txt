@@ -22,4 +22,5 @@
 	git reset --mixed <되돌릴 commit> : commit 내역을 되돌리고 staging 까지 취소
 		(좀더 작업을 하고 commit 하고 싶을 때)
 	git reset --hard <되돌릴 commit> : commit 내역을 되돌리고 파일을 rollback
-	git revert <되돌릴 commit> : 파일을 rollback, revert 내역을 추가 
+	git revert <되돌릴 commit> : 파일을 rollback, revert 내역을 추가
+	git revert <되돌릴 commit> : 파일을 rollback하고 revert 내역을 남긴다.
