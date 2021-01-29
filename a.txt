@@ -1,5 +1,0 @@
-hello world
-
-what's your plan?
-
-This Git is fucking difficult.. I don't like it.
