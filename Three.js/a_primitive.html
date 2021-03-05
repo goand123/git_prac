@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="resources/css/all.css" rel="stylesheet">
+<link href="resources/css/reset.css" rel="stylesheet">
+<link href="resources/css/tweb.css" rel="stylesheet">
+<script src="https://threejs.org/build/three.min.js"></script>
+</head>
+<body>
+	<header class="header-section">
+		<div class="wrap_top-logo">
+			<a class="top-logo-text">PCLASS</a>
+		</div>
+		<form class="form_top-search">
+			<input type="search" class="input_top-search" placeholder="검색어를 입력하세요.">
+			<button><i class="fas fa-search"></i></button>
+		</form>
+		<div class="wrap_user">
+			<a class="top_user top_join">회원가입</a><!-- a태그영역 바깥을 클리해도 동작할까봐 -->
+			<a class="top_user">Login</a>
+		</div>
+	</header>
+	
+	<aside class="wrap_snb">
+		<P>Menu</P> <!-- block요소라서 한줄을 다 잡아먹도록 -->
+		<ul class="snb_menu"><!-- 인라인요소안에 블록을 넣으면 노란줄이떠서 span을 넣어서 나중에a태그쓸수있도록 -->
+			<li><i class="fas fa-search"></i><span>도서검색</span></li>
+			<li><i class="fas fa-shopping-cart"></i><span>장바구니</span></li>
+			<li><i class="fas fa-chalkboard"></i><span>공지사항</span></li>
+			<li><i class="fas fa-user-friends"></i><span>About us</span></li>
+		</ul>
+	</aside>
+	
+	
+	<section class="contents">
+		<article class="middle">
+			
+			
+		</article>
+		
+		
+		<article class="wrap_book">
+			<div class="wrap_book-line">
+				<p class="cate-book">최근 인기 도서</p>
+				<div class="book-line">
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="wrap_book-line">
+				<p class="cate-book">스테디셀러</p>
+				<div class="book-line">
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="wrap_book-line">
+				<p class="cate-book">새로 들어온 책</p>
+				<div class="book-line">
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="wrap_book-line">
+				<p class="cate-book">최근 대출 도서</p>
+				<div class="book-line">
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+				</div>
+			</div>
+			
+		</article>
+	</section>
+	
+	
+	
+	
+	<footer class="bottom">footer</footer>
+
+<script type="text/javascript">
+// 씬을 랜더링 할 요소
+const middle = document.querySelector('.middle'); //화면전체가 아니라 middle 구역에 뿌릴꺼니까..
+//씬을 만들고, 카메라세팅, 랜더사이즈, 원하는 요소에 랜더링.., geometry, mesh, texture, light
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 75, middle.clientWidth / middle.clientHeight, 0.1, 1000 );
+//console.dir(document.querySelector('.middle')); clientHeight, clientWidth
+//window.innerWidth / window.innerHeight 화면 전체
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( middle.clientWidth, middle.clientHeight );
+//renderer.domElement : 씬을 보여주는 canvas Element
+middle.appendChild( renderer.domElement );
+scene.background = new THREE.Color('lavender'); //rgb값, hs값, 문자 가능
+
+
+const geometry = new THREE.BoxGeometry();
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( geometry, material ); //3D object
+scene.add( cube );
+
+//camera.position.set(3,3,5);
+camera.position.z = 5;
+// 0,0,0 = 완전중심, 카메라랑 큐브가 완전 같은곳에 있어서 큐브가 카메라에 담길수 없어서 카메라 z축을 우리쪽으로 땡겨줌
+//꾸며진 씬을 카메라로 비추는 화면을 랜더링
+renderer.render(scene, camera);
+
+//반복적으로 호출되면서 새롭게 씬과 카메라가 랜더됨 1초에 60번 연속적으로 -> 애니메이션 ; 1초에 60번 호출
+function animate() {
+	requestAnimationFrame( animate );
+	cube.rotation.x += 0.01;
+	cube.rotation.y += 0.01;
+	renderer.render( scene, camera );
+}
+animate();
+
+
+
+
+</script>
+
+</body>
+
+
+
+
+</html>
