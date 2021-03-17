@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>모듈화</title>
+<link href="resources/css/all.css" rel="stylesheet">
+<link href="resources/css/reset.css" rel="stylesheet">
+<link href="resources/css/tweb.css" rel="stylesheet">
+<script src="https://threejs.org/build/three.min.js"></script>
+<script src="resources/js/OrbitControls.js"></script>
+<script src="resources/js/OBJLoader.js"></script>
+<script src="resources/js/MTLLoader.js"></script>
+<script src="resources/js/ThreeJSBoot.js"></script>
+
+</head>
+<body>
+	<header class="header-section">
+		<div class="wrap_top-logo">
+			<a class="top-logo-text">PCLASS</a>
+		</div>
+		<form class="form_top-search">
+			<input type="search" class="input_top-search" placeholder="검색어를 입력하세요.">
+			<button><i class="fas fa-search"></i></button>
+		</form>
+		<div class="wrap_user">
+			<a class="top_user top_join">회원가입</a><!-- a태그영역 바깥을 클리해도 동작할까봐 -->
+			<a class="top_user">Login</a>
+		</div>
+	</header>
+	
+	<aside class="wrap_snb">
+		<P>Menu</P> <!-- block요소라서 한줄을 다 잡아먹도록 -->
+		<ul class="snb_menu"><!-- 인라인요소안에 블록을 넣으면 노란줄이떠서 span을 넣어서 나중에a태그쓸수있도록 -->
+			<li><i class="fas fa-search"></i><span>도서검색</span></li>
+			<li><i class="fas fa-shopping-cart"></i><span>장바구니</span></li>
+			<li><i class="fas fa-chalkboard"></i><span>공지사항</span></li>
+			<li><i class="fas fa-user-friends"></i><span>About us</span></li>
+		</ul>
+	</aside>
+	
+	
+	<section class="contents">
+		<article class="middle">
+			
+			
+		</article>
+		
+		
+		<article class="wrap_book">
+			<div class="wrap_book-line">
+				<p class="cate-book">최근 인기 도서</p>
+				<div class="book-line">
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="wrap_book-line">
+				<p class="cate-book">스테디셀러</p>
+				<div class="book-line">
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="wrap_book-line">
+				<p class="cate-book">새로 들어온 책</p>
+				<div class="book-line">
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="wrap_book-line">
+				<p class="cate-book">최근 대출 도서</p>
+				<div class="book-line">
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+					<div>
+						<img src="resources/image/nudge.jpg">
+						<p class="tit_book">Nudge</p>
+					</div>
+				</div>
+			</div>
+			
+		</article>
+	</section>
+	
+	
+	
+	
+	<footer class="bottom">footer</footer>
+
+<script type="text/javascript">
+// 씬을 랜더링 할 요소
+const middle = document.querySelector('.middle'); //화면전체가 아니라 middle 구역에 뿌릴꺼니까..
+
+///threejsboot.js 후에 이거 두줄있어야해 
+let boot = new ThreeJSBoot(); // 인스턴스
+boot.createStage(middle);
+// 1. scene, camera 등등에 boot. 붙여줌
+// 2. 반복되는 코드 정리 (프로퍼티color or map등들을 매개변수로 넘겨줌)
+// 3. fontloader와 geometry를 js로 빼낼거래 fontloader -> promise /resolve -> 그릴 함수
+	
+	boot.scene.background = new THREE.CubeTextureLoader()
+	.setPath( 'resources/texture/cubeMaps/' )
+	.load( [
+		'px.png',
+		'nx.png',
+		'py.png',
+		'ny.png',
+		'pz.png',
+		'nz.png'
+	] );	
+	
+
+const textureLoader = new THREE.TextureLoader(); //for texture
+
+const cube = boot.createObject(new THREE.BoxGeometry(), { color: 0x00ff00 });
+/* 2번정리 이거 날리고 윗 한줄
+const boxGeo = new THREE.BoxGeometry();
+const boxMaterial = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( boxGeo, boxMaterial ); //3D object
+*/
+const sphere = boot.createObject(new THREE.SphereGeometry(0.5,30,30), { map: textureLoader.load('resources/texture/earth.png') });
+const moon = boot.createObject(new THREE.SphereGeometry(0.2,30,30), { map: textureLoader.load('resources/texture/moon.png') });
+const neptunus = boot.createObject(new THREE.SphereGeometry(1.2,30,30), { map: textureLoader.load('resources/texture/neptunus.png') });
+const ring = boot.createObject(new THREE.RingGeometry(1.5, 2, 30)
+					, { map: textureLoader.load('resources/texture/ring.png'), side:THREE.DoubleSide	});
+
+sphere.position.set(5,0,0);
+moon.position.set(2,0,0); // 0,0,0이 더이상 화면중심좌표가 아니라 지구기준
+neptunus.position.set(-5,0,0);
+ring.rotation.x = 5; //반바퀴만 링이 보여... 뒷면은 랜더링이 안되서 그럼
+
+sphere.add(moon); //3depth scene
+neptunus.add(ring);
+cube.add(sphere);
+cube.add(neptunus);
+boot.scene.add( cube );
+
+let objText = boot.createText('resources/fonts/helvetiker_regular.typeface.json',
+						'Pclass ThreeJS Boot', 'lightgreen')
+	.then(objText=>{ //objText - resolve로 넘어오는 값
+		objText.position.set(-6,2,0);
+		boot.scene.add(objText);
+	});
+
+
+	const point = new THREE.Object3D(); //물체없는곳에 그냥 좌표찍고 돌게끔 우주선을.
+	point.position.set(0,2,-4);
+	
+	//mtl이 반영된 obj
+	const objLoader = new THREE.OBJLoader();
+	const mtlLoader = new THREE.MTLLoader();
+	mtlLoader.load('resources/models/apollo/apollo.mtl', (mtl) => {
+	  mtl.preload();
+	  objLoader.setMaterials(mtl);
+	  objLoader.load('resources/models/apollo/apollo.obj', (root) => {
+		  root.position.set(-5,2,0); //(-8,2,-4)를 기준으로
+		  point.add(root); //scene.add(root)이거 대신에
+		  boot.scene.add(point);
+	  });
+	});
+
+	/*
+	//남이 만들어놓은 obj 3d모델 데려오기
+	const objLoader = new THREE.OBJLoader();
+	objLoader.load('resources/models/apollo/apollo.obj', (root) => {
+	  	root.position.set(-5,2,0);
+		scene.add(root);
+	}); */
+
+
+//반복적으로 호출되면서 새롭게 씬과 카메라가 랜더됨 1초에 60번 연속적으로 -> 애니메이션 ; 1초에 60번 호출
+function animate() {
+	requestAnimationFrame( animate );
+	//cube.rotation.x += 0.01; 이거 없애 for e_scene
+	cube.rotation.y += 0.01;
+	sphere.rotation.y += 0.03;
+	point.rotation.y -= 0.05;
+	/* 클릭하면 큐브굴러와?
+	if(cube.position.z > 2){
+		renderer.domElement.style.display='none';
+		return
+	}*/
+	
+	boot.renderer.render( boot.scene, boot.camera );
+	
+	
+	
+}
+animate();
+
+
+
+
+</script>
+
+</body>
+
+
+
+
+</html>
